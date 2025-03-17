@@ -11,6 +11,21 @@ import Feature from "@/components/feature";
 export default function Home() {
   return (
     <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+      <div className="font-bold text-orange-600">
+        Todo: 
+        fotos voor producten <br/>
+        database maken<br/>
+        producten met fotos toevoegen<br/>
+        pagina maken voor eshop<br/>
+        koop en huur pagina<br/>
+        mogelijkheden voor kopen en vullen winkelwagen<br/>
+        afrekenen<br/>
+        login pagina<br/>
+        signup pagina<br/>
+        afrekenen kan alleen met account<br/>
+        
+      </div>
+      
       <AppNavbar />
       <HeroSection/>
       <SubHeader/>
@@ -20,6 +35,7 @@ export default function Home() {
       <RestaurantSection />
       <ContactSection />
       <AppFooter />
+      
     </div>
   );
 }

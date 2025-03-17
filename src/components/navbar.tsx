@@ -23,7 +23,6 @@ export default function App() {//todo: add dropdown menu and avatar for login/si
         "Aktiviteter",
         "Tjänster",
         "Butik",
-    
         "Log Out",
     ];
 
@@ -58,22 +57,22 @@ export default function App() {//todo: add dropdown menu and avatar for login/si
           </div>
             </NavbarBrand>
             <NavbarItem>
-            <Link color="foreground" href="/">
+            <Link  href="/">
                 Hem
             </Link>
             </NavbarItem>
-            <NavbarItem isActive>
-            <Link aria-current="page" href="/Om Oss">
+            <NavbarItem >
+            <Link href="/Om Oss">
                 Om Oss
             </Link>
             </NavbarItem>
             <NavbarItem>
-            <Link color="foreground" href="/aktiviteter">
+            <Link  href="/aktiviteter">
                 Aktiviteter
             </Link>
             </NavbarItem>
             <NavbarItem>
-            <Link color="foreground" href="/butik">
+            <Link href="/butik">
                 Butik
             </Link>
             </NavbarItem>

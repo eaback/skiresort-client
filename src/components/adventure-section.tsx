@@ -31,4 +31,4 @@ const SkiAdventureSection = () => {
   );
 };
 
-export default SkiAdventureSection;
+export default SkiAdventureSection; 
