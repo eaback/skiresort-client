@@ -15,7 +15,7 @@ const SkiAdventureSection = () => {
           </button>
         </div>
         <div className="bg-[#A45D4E] p-8 rounded-lg text-white">
-          <h3 className="text-4xl font-serif mb-6">Omfatta lugnet</h3>
+          <h3 className="text-4xl font-serif mb-6">Omfamna lugnet</h3>
           <p className="text-lg leading-relaxed mb-8">
             Unna dig den ultimata vinterunderlandets upplevelse på Destination Ljungdalen. 
             Vår skidort erbjuder oöverträffad tillgång till de svepande backarna, lyxigt 

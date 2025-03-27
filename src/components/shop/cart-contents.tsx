@@ -53,7 +53,7 @@ export default function CartContents() {
                         <Input
                         type="number"
                         min="1"
-                        value={item.quantity}
+                        value={item.quantity.toString()}
                         onChange={(e) => updateQuantity(item.product.id, parseInt(e.target.value) || 1)}
                         className="w-20 text-center"
                         />

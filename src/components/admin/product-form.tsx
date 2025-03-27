@@ -124,7 +124,7 @@ export default function ProductForm({ productId }: { productId?: string }) {
                 name="price"
                 type="number"
                 min="0"
-                value={formData.price}
+                value={formData.price.toString()}
                 onChange={handleChange}
                 required
                 />
@@ -136,7 +136,7 @@ export default function ProductForm({ productId }: { productId?: string }) {
                 name="stock"
                 type="number"
                 min="0"
-                value={formData.stock}
+                value={formData.stock.toString()}
                 onChange={handleChange}
                 required
                 />

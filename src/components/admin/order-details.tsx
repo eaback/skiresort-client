@@ -122,28 +122,28 @@ export default function OrderDetails({ orderId }: { orderId: string }) {
                 <div className="flex justify-between items-center">
                     <span className="font-medium">Betalningsstatus:</span>
                     <Select 
-                    value={paymentStatus} 
+                    selectedKeys={paymentStatus} 
                     onChange={(e) => setPaymentStatus(e.target.value)}
                     className="w-40"
                     >
-                    <SelectItem value="pending">Väntande</SelectItem>
-                    <SelectItem value="completed">Slutförd</SelectItem>
-                    <SelectItem value="failed">Misslyckad</SelectItem>
-                    <SelectItem value="refunded">Återbetald</SelectItem>
+                    <SelectItem key="pending">Väntande</SelectItem>
+                    <SelectItem key="completed">Slutförd</SelectItem>
+                    <SelectItem key="failed">Misslyckad</SelectItem>
+                    <SelectItem key="refunded">Återbetald</SelectItem>
                     </Select>
                 </div>
                 <div className="flex justify-between items-center">
                     <span className="font-medium">Orderstatus:</span>
                     <Select 
-                    value={orderStatus} 
+                    selectedKeys={orderStatus} 
                     onChange={(e) => setOrderStatus(e.target.value)}
                     className="w-40"
                     >
-                    <SelectItem value="pending">Väntande</SelectItem>
-                    <SelectItem value="processing">Behandlas</SelectItem>
-                    <SelectItem value="shipped">Skickad</SelectItem>
-                    <SelectItem value="delivered">Levererad</SelectItem>
-                    <SelectItem value="cancelled">Avbruten</SelectItem>
+                    <SelectItem key="pending">Väntande</SelectItem>
+                    <SelectItem key="processing">Behandlas</SelectItem>
+                    <SelectItem key="shipped">Skickad</SelectItem>
+                    <SelectItem key="delivered">Levererad</SelectItem>
+                    <SelectItem key="cancelled">Avbruten</SelectItem>
                     </Select>
                 </div>
                 <Button 

@@ -79,7 +79,7 @@ export default function ProductDetail({ id }: { id: string }) {
                 type="number"
                 min="1"
                 max={product.stock}
-                value={quantity}
+                value={quantity.toString()}
                 onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
                 disabled={product.stock <= 0}
                 />
