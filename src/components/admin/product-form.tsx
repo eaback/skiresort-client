@@ -46,7 +46,6 @@ export default function ProductForm({ productId }: { productId?: string }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         
-        // Convert price and stock to numbers
         if (name === 'price' || name === 'stock') {
         setFormData(prev => ({ ...prev, [name]: parseInt(value) || 0 }));
         } else {
@@ -79,7 +78,6 @@ export default function ProductForm({ productId }: { productId?: string }) {
             throw new Error(`Failed to ${isEdit ? 'update' : 'create'} product`);
         }
         
-        // Redirect back to product list
         router.push('/admin/products');
         
         } catch (err) {

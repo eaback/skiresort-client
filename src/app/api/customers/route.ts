@@ -3,7 +3,6 @@ import { executeQuery, executeInsert } from "@/lib/db-connect"
 import type { Customer } from "@/lib/db"
 import { hash } from "bcrypt"
 
-// Update the hashPassword function to use bcrypt correctly
 async function hashPassword(password: string): Promise<string> {
   return await hash(password, 10)
 }
@@ -26,7 +25,6 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Customer not found" }, { status: 404 })
       }
 
-      // Don't return password in response
       const customerData = { ...customers[0] }
       delete customerData.password
       return NextResponse.json(customerData)
@@ -34,7 +32,6 @@ export async function GET(request: Request) {
 
     const customers = await executeQuery<Customer[]>(query, params)
 
-    // Remove passwords from all customers
     const safeCustomers = customers.map((customer) => {
       const customerData = { ...customer }
       delete customerData.password
@@ -47,7 +44,6 @@ export async function GET(request: Request) {
   }
 }
 
-// In the POST function, ensure we're properly handling the password hashing
 export async function POST(request: Request) {
   try {
     console.log("API received customer creation request")
@@ -61,7 +57,6 @@ export async function POST(request: Request) {
       email: body.email,
     })
 
-    // Validate required fields
     if (!body.firstname || !body.lastname || !body.email || !body.password) {
       console.error("Missing required fields:", {
         firstname: !!body.firstname,
@@ -73,7 +68,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    // Check if email already exists
     console.log("Checking if email exists:", body.email)
     const existingCustomers = await executeQuery<Customer[]>("SELECT * FROM customers WHERE email = ?", [body.email])
 
@@ -82,7 +76,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email already in use" }, { status: 400 })
     }
 
-    // Hash the password
     console.log("Hashing password...")
     const hashedPassword = await hashPassword(body.password)
     console.log("Password hashing completed, hash length:", hashedPassword.length)
@@ -121,7 +114,6 @@ export async function POST(request: Request) {
     })
 
     try {
-      // Use executeInsert to get the correct result type
       const result = await executeInsert(query, params)
       console.log("Insert result:", result)
 
@@ -129,7 +121,6 @@ export async function POST(request: Request) {
         throw new Error("Failed to insert customer - no insertId returned")
       }
 
-      // Get the newly created customer
       console.log("Fetching newly created customer with ID:", result.insertId)
       const newCustomer = await executeQuery<Customer[]>("SELECT * FROM customers WHERE id = ?", [result.insertId])
 
@@ -139,7 +130,6 @@ export async function POST(request: Request) {
 
       console.log("Customer created successfully with ID:", result.insertId)
 
-      // Don't return password in response
       const customerData = { ...newCustomer[0] }
       delete customerData.password
       return NextResponse.json(customerData, { status: 201 })
@@ -167,19 +157,16 @@ export async function PUT(request: Request) {
 
     const body = await request.json()
 
-    // Validate required fields
     if (!body.firstname || !body.lastname || !body.email) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    // Check if customer exists
     const customer = await executeQuery<Customer[]>("SELECT * FROM customers WHERE id = ?", [id])
 
     if (customer.length === 0) {
       return NextResponse.json({ error: "Customer not found" }, { status: 404 })
     }
 
-    // Check if email is being changed and if it's already in use
     if (body.email !== customer[0].email) {
       const existingCustomers = await executeQuery<Customer[]>("SELECT * FROM customers WHERE email = ? AND id != ?", [
         body.email,
@@ -191,7 +178,6 @@ export async function PUT(request: Request) {
       }
     }
 
-    // If password is being updated, hash it
     let passwordUpdate = ""
     const params: (string | number)[] = [
       body.firstname,
@@ -220,10 +206,8 @@ export async function PUT(request: Request) {
 
     await executeQuery<unknown>(query, params)
 
-    // Get the updated customer
     const updatedCustomer = await executeQuery<Customer[]>("SELECT * FROM customers WHERE id = ?", [id])
 
-    // Don't return password in response
     const customerData = { ...updatedCustomer[0] }
     delete customerData.password
     return NextResponse.json(customerData)
@@ -242,21 +226,18 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "Customer ID is required" }, { status: 400 })
     }
 
-    // Check if customer exists
     const customer = await executeQuery<Customer[]>("SELECT * FROM customers WHERE id = ?", [id])
 
     if (customer.length === 0) {
       return NextResponse.json({ error: "Customer not found" }, { status: 404 })
     }
 
-    // Check if customer has orders
     const orders = await executeQuery<unknown[]>("SELECT * FROM orders WHERE customer_id = ?", [id])
 
     if (orders.length > 0) {
       return NextResponse.json({ error: "Cannot delete customer with existing orders" }, { status: 400 })
     }
 
-    // Delete the customer
     await executeQuery<unknown>("DELETE FROM customers WHERE id = ?", [id])
 
     return NextResponse.json({ success: true })

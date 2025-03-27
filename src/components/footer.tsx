@@ -14,7 +14,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Navigation Section */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Navigering</h3>
             <ul className="space-y-2">
@@ -25,7 +24,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Discover Section */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Upptäck</h3>
             <ul className="space-y-2">
@@ -36,7 +34,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Section */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <ul className="space-y-2">

@@ -47,7 +47,6 @@ export default function OrderList() {
             throw new Error('Failed to delete order');
         }
         
-        // Remove order from state
         setOrders(orders.filter(order => order.id !== id));
         
         } catch (err) {

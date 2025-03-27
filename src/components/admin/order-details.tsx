@@ -57,7 +57,6 @@ export default function OrderDetails({ orderId }: { orderId: string }) {
             throw new Error('Failed to update order status');
         }
         
-        // Refresh order data
         fetchOrder();
         
         } catch (err) {
@@ -80,7 +79,6 @@ export default function OrderDetails({ orderId }: { orderId: string }) {
             throw new Error('Failed to delete order item');
         }
         
-        // Refresh order data
         fetchOrder();
         
         } catch (err) {

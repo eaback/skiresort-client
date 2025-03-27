@@ -47,7 +47,6 @@ export default function ProductList() {
             throw new Error('Failed to delete product');
         }
         
-        // Remove product from state
         setProducts(products.filter(product => product.id !== id));
         
         } catch (err) {
