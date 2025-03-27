@@ -46,28 +46,22 @@ export async function PUT(request: Request) {
             return NextResponse.json({ error: "Quantity must be at least 1" }, { status: 400 })
         }
 
-        // Check if order item exists
         const item = await executeQuery<OrderItem[]>("SELECT * FROM order_items WHERE id = ?", [id])
 
         if (item.length === 0) {
             return NextResponse.json({ error: "Order item not found" }, { status: 404 })
         }
 
-    // Get the difference in quantity
     const quantityDiff = body.quantity - item[0].quantity
 
-    // Start a transaction
     const connection = await getConnection()
     await connection.beginTransaction()
 
     try {
-      // Update order item quantity
         await connection.execute("UPDATE order_items SET quantity = ? WHERE id = ?", [body.quantity, id])
 
-        // Update product stock
         await connection.execute("UPDATE products SET stock = stock - ? WHERE id = ?", [quantityDiff, item[0].product_id])
 
-        // Update order total price
         await connection.execute(
             `UPDATE orders 
             SET total_price = (
@@ -79,15 +73,12 @@ export async function PUT(request: Request) {
             [item[0].order_id, item[0].order_id],
         )
 
-        // Commit the transaction
         await connection.commit()
 
-        // Get the updated order item
         const updatedItem = await executeQuery<OrderItem[]>("SELECT * FROM order_items WHERE id = ?", [id])
 
         return NextResponse.json(updatedItem[0])
         } catch (error) {
-        // Rollback the transaction in case of error
         await connection.rollback()
         throw error
         }
@@ -106,28 +97,23 @@ export async function DELETE(request: Request) {
         return NextResponse.json({ error: "Order item ID is required" }, { status: 400 })
         }
 
-        // Check if order item exists
         const item = await executeQuery<OrderItem[]>("SELECT * FROM order_items WHERE id = ?", [id])
 
         if (item.length === 0) {
         return NextResponse.json({ error: "Order item not found" }, { status: 404 })
         }
 
-        // Start a transaction
         const connection = await getConnection()
         await connection.beginTransaction()
 
         try {
-        // Restore product stock
         await connection.execute("UPDATE products SET stock = stock + ? WHERE id = ?", [
             item[0].quantity,
             item[0].product_id,
         ])
 
-        // Delete order item
         await connection.execute("DELETE FROM order_items WHERE id = ?", [id])
 
-        // Update order total price
         await connection.execute(
             `UPDATE orders 
             SET total_price = (
@@ -139,12 +125,10 @@ export async function DELETE(request: Request) {
             [item[0].order_id, item[0].order_id],
         )
 
-        // Commit the transaction
         await connection.commit()
 
         return NextResponse.json({ success: true })
         } catch (error) {
-        // Rollback the transaction in case of error
         await connection.rollback()
         throw error
         }
@@ -154,7 +138,6 @@ export async function DELETE(request: Request) {
     }
 }
 
-// Helper function to get a database connection
 async function getConnection() {
     const pool = await import("../../../lib/db-connect").then((module) => module.getConnection())
     return pool

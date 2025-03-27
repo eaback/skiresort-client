@@ -79,7 +79,6 @@ export default function CustomerForm({ customerId }: { customerId?: string }) {
             throw new Error(`Failed to ${isEdit ? 'update' : 'create'} customer`);
         }
         
-        // Redirect back to customer list
         router.push('/admin/customers');
         
         } catch (err) {

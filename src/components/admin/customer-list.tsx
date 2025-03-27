@@ -47,7 +47,6 @@ export default function CustomerList() {
             throw new Error('Failed to delete customer');
         }
         
-        // Remove customer from state
         setCustomers(customers.filter(customer => customer.id !== id));
         
         } catch (err) {

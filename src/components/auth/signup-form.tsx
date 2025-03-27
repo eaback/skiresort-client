@@ -51,14 +51,12 @@ export default function SignupForm() {
     setError(null)
 
     try {
-      // Validate passwords match
       if (formData.password !== formData.confirmPassword) {
         setError("Passwords do not match")
         setLoading(false)
         return
       }
 
-      // Validate required fields
       const requiredFields = [
         "firstname",
         "lastname",
@@ -78,7 +76,6 @@ export default function SignupForm() {
         return
       }
 
-      // Remove confirmPassword before sending to API
       const { confirmPassword, ...customerData } = formData
 
       console.log("Submitting customer data:", {
@@ -104,10 +101,8 @@ export default function SignupForm() {
 
       console.log("Registration successful:", data)
 
-      // Show success message
       alert("Account created successfully! You can now log in.")
 
-      // Redirect to login page
       router.push("/auth/login?registered=true")
     } catch (err) {
       console.error("Registration error:", err)
