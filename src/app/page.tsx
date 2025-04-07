@@ -4,7 +4,6 @@ import ContactSection from '@/components/contact-section';
 import RestaurantSection from '@/components/restaurant-section';
 import ServicesSection from '@/components/services-section';
 import SkiAdventureSection from '@/components/adventure-section';
-import SubHeader from "@/components/sub-header";
 import HeroSection from "@/components/hero-section";
 import Feature from "@/components/feature";
 
@@ -27,7 +26,6 @@ export default function Home() {
      */}
       <AppNavbar />
       <HeroSection/>
-      {/* <SubHeader/> */}
       <SkiAdventureSection/>
       <ServicesSection />
       <Feature/>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Button, Input } from "@heroui/react";
-import { Customer } from '@/lib/db';
+import { Customer } from '@/lib/db-types';
 import { useRouter } from 'next/navigation';
 
 export default function CustomerForm({ customerId }: { customerId?: string }) {

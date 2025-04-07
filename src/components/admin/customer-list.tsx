@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Chip } from "@heroui/react";
-import { Customer } from '@/lib/db';
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button } from "@heroui/react";
+import { Customer } from '@/lib/db-types';
 import Link from 'next/link';
 import { Edit, Trash } from 'lucide-react';
 

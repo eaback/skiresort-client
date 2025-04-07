@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import type { Product, CartItem } from "./db"
+import type { Product, CartItem } from "./db-types"
 import { useAuth } from "@/contexts/auth-context"
 
 export function useCart() {

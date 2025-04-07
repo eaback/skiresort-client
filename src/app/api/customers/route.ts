@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { executeQuery, executeInsert } from "@/lib/db-connect"
-import type { Customer } from "@/lib/db"
+import { executeQuery, executeInsert } from "@/lib/db"
+import type { Customer } from "@/lib/db-types"
 import { hash } from "bcrypt"
 
 async function hashPassword(password: string): Promise<string> {

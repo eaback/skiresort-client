@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, ReactNode } from 'react';
 import { useCart } from '@/lib/cart';
-import { Product, CartItem } from '@/lib/db';
+import { Product, CartItem } from '@/lib/db-types';
 
 interface CartContextType {
     cart: CartItem[];

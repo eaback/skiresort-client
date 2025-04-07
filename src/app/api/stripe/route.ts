@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { executeQuery } from "@/lib/db-connect"
-import type { Order, Customer } from "@/lib/db"
+import { executeQuery } from "@/lib/db"
+import type { Order, Customer } from "@/lib/db-types"
 import Stripe from "stripe"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {

@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button, Card, CardBody, CardHeader, Chip, Divider, Select, SelectItem } from "@heroui/react";
-import { Order } from '@/lib/db';
+import { Button, Card, CardBody, CardHeader, Divider, Select, SelectItem } from "@heroui/react";
+import { Order } from '@/lib/db-types';
 import { useRouter } from 'next/navigation';
 import { Trash } from 'lucide-react';
 

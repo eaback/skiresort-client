@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { executeQuery, executeInsert } from "@/lib/db-connect"
-import type { Order, OrderItem } from "@/lib/db"
+import { executeQuery, executeInsert } from "@/lib/db"
+import type { Order, OrderItem } from "@/lib/db-types"
 
 interface ProductStock {
     id: number

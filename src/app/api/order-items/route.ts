@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { executeQuery } from "../../../lib/db-connect"
-import type { OrderItem } from "@/lib/db"
+import { executeQuery } from "../../../lib/db"
+import type { OrderItem } from "@/lib/db-types"
 
 export async function GET(request: Request) {
     try {
@@ -139,7 +139,7 @@ export async function DELETE(request: Request) {
 }
 
 async function getConnection() {
-    const pool = await import("../../../lib/db-connect").then((module) => module.getConnection())
+    const pool = await import("../../../lib/db").then((module) => module.getConnection())
     return pool
 }
 

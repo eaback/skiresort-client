@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Button, Input, Textarea } from "@heroui/react";
-import { Product } from '@/lib/db';
+import { Product } from '@/lib/db-types';
 import { useRouter } from 'next/navigation';
 
 export default function ProductForm({ productId }: { productId?: string }) {

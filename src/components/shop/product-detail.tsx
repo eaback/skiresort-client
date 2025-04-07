@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Button, Input } from "@heroui/react";
-import { Product } from '@/lib/db';
+import { Product } from '@/lib/db-types';
 import { useCartContext } from '@/contexts/cart-context';
 
 export default function ProductDetail({ id }: { id: string }) {

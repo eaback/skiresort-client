@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Chip } from "@heroui/react";
-import { Product } from '@/lib/db';
+import { Product } from '@/lib/db-types';
 import Link from 'next/link';
 import { Edit, Trash } from 'lucide-react';
 

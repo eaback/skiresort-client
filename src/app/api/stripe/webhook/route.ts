@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
-import { executeQuery } from "@/lib/db-connect"
+import { executeQuery } from "@/lib/db"
 import Stripe from "stripe"
 import { headers } from "next/headers"
-import type { Order, OrderItem } from "@/lib/db"
+import type { Order, OrderItem } from "@/lib/db-types"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
     apiVersion: "2025-02-24.acacia", 

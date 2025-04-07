@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { executeQuery } from "@/lib/db-connect"
-import type { Customer } from "@/lib/db"
+import { executeQuery } from "@/lib/db"
+import type { Customer } from "@/lib/db-types"
 
 export async function GET(request: Request, { params }: { params: { email: string } }) {
   try {

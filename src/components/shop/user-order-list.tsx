@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardBody, CardHeader, Divider, Button } from "@heroui/react"
-import type { Order } from "@/lib/db"
+import type { Order } from "@/lib/db-types"
 import { useAuth } from "@/contexts/auth-context"
 import { formatDate } from "@/lib/utils"
 

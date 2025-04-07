@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { executeQuery, executeInsert } from "@/lib/db-connect"
-import type { Product } from "@/lib/db"
+import { executeQuery, executeInsert } from "@/lib/db"
+import type { Product } from "@/lib/db-types"
 
 export async function GET(request: Request) {
     try {

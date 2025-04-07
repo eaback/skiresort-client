@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardBody, CardFooter, Image, Button } from "@heroui/react";
 import Link from 'next/link';
-import { Product } from '@/lib/db';
+import { Product } from '@/lib/db-types';
 
 export default function ProductList({ category }: { category?: string }) {
     const [products, setProducts] = useState<Product[]>([]);
