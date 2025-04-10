@@ -9,14 +9,10 @@ export function useCart() {
   const [isLoaded, setIsLoaded] = useState(false)
   const { user } = useAuth()
 
-  const getCartKey = () => {
-    return user ? `cart_${user.id}` : "cart_guest"
-  }
-
   useEffect(() => {
-    const cartKey = getCartKey()
+    const cartKey = user ? `cart_${user.id}` : "cart_guest"
     const savedCart = localStorage.getItem(cartKey)
-
+  
     if (savedCart) {
       try {
         setCart(JSON.parse(savedCart))
@@ -26,16 +22,18 @@ export function useCart() {
     } else {
       setCart([])
     }
-
+  
     setIsLoaded(true)
-  }, [user, getCartKey])
+  }, [user])
+  
 
   useEffect(() => {
     if (isLoaded) {
-      const cartKey = getCartKey()
+      const cartKey = user ? `cart_${user.id}` : "cart_guest"
       localStorage.setItem(cartKey, JSON.stringify(cart))
     }
-  }, [cart, isLoaded, user, getCartKey])
+  }, [cart, isLoaded, user])
+  
 
   const addToCart = (product: Product, quantity = 1) => {
     setCart((prevCart) => {
