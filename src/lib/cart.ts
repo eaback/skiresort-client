@@ -28,14 +28,14 @@ export function useCart() {
     }
 
     setIsLoaded(true)
-  }, [user])
+  }, [user, getCartKey])
 
   useEffect(() => {
     if (isLoaded) {
       const cartKey = getCartKey()
       localStorage.setItem(cartKey, JSON.stringify(cart))
     }
-  }, [cart, isLoaded, user])
+  }, [cart, isLoaded, user, getCartKey])
 
   const addToCart = (product: Product, quantity = 1) => {
     setCart((prevCart) => {

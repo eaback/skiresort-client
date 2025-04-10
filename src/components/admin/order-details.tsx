@@ -14,9 +14,7 @@ export default function OrderDetails({ orderId }: { orderId: string }) {
     const [orderStatus, setOrderStatus] = useState<string>('');
     const [paymentStatus, setPaymentStatus] = useState<string>('');
 
-    useEffect(() => {
-        fetchOrder();
-    }, [orderId]);
+    
 
     const fetchOrder = async () => {
         try {
@@ -37,6 +35,10 @@ export default function OrderDetails({ orderId }: { orderId: string }) {
         setLoading(false);
         }
     };
+
+    useEffect(() => {
+        fetchOrder();
+    }, [orderId]);
 
     const handleUpdateStatus = async () => {
         if (!order) return;

@@ -1,4 +1,6 @@
 import mysql from "mysql2/promise"
+import fs from 'fs';
+import path from 'path';
 
 interface InsertResult {
     insertId: number
@@ -9,17 +11,23 @@ interface InsertResult {
 export async function getConnection() {
     try {
         console.log("Creating database connection with params:", {
-        host: process.env.DB_HOST || "localhost",
-        user: process.env.DB_USER || "root",
-        password: process.env.DB_PASSWORD ? "[REDACTED]" : "",
-        database: process.env.DB_NAME || "ecommerce",
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        port: process.env.DB_PORT,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         })
 
         const pool = mysql.createPool({
-        host: process.env.DB_HOST || "localhost",
-        user: process.env.DB_USER || "root",
-        password: process.env.DB_PASSWORD || "",
-        database: process.env.DB_NAME || "ecommerce",
+        host: process.env.DB_HOST ,
+        user: process.env.DB_USER,
+        port: Number(process.env.DB_PORT),
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        ssl: {
+            rejectUnauthorized: true,
+            ca: fs.readFileSync(path.join(process.cwd(), 'certs', 'ca.pem'), 'utf8'),
+        },
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,

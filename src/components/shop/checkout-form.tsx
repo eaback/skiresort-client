@@ -19,8 +19,8 @@ interface CheckoutFormData {
 }
 
 export default function CheckoutForm() {
-    const router = useRouter()
-    const { cart, totalPrice, clearCart } = useCartContext()
+    // const router = useRouter()
+    const { cart, totalPrice } = useCartContext()
     const { user, isAuthenticated } = useAuth()
 
     const [formData, setFormData] = useState<CheckoutFormData>({

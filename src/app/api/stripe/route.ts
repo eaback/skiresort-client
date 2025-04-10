@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { executeQuery } from "@/lib/db"
 import type { Order, Customer } from "@/lib/db-types"
 import Stripe from "stripe"
+import { LineItem } from "../../../lib/db-types"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
     apiVersion: "2025-02-24.acacia", 
@@ -34,7 +35,7 @@ try {
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
-        line_items: lineItems.map((item: any) => ({
+        line_items: lineItems.map((item: LineItem) => ({
             price_data: {
             currency: "sek",
             product_data: {
