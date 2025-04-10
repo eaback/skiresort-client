@@ -3,25 +3,30 @@ import AppFooter from "@/components/footer";
 import CustomerForm from "@/components/admin/customer-form";
 import { Button } from "@heroui/react";
 import Link from "next/link";
+import { FC } from "react";
 
-export default function EditCustomerPage({ params }: { params: { id: string } }) {
+interface EditCustomerPageProps {
+    params: {
+        id: string;
+    };
+}
+
+const EditCustomerPage: FC<EditCustomerPageProps> = ({ params }) => {
     return (
         <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen">
-        <AppNavbar />
-        
-        <div className="container mx-auto px-4 py-8">
+            <AppNavbar />
+            <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold text-teal-800">Redigera Kund</h1>
-            
-            <Link href="/admin/customers">
+                <h1 className="text-4xl font-bold text-teal-800">Redigera Kund</h1>
+                <Link href="/admin/customers">
                 <Button variant="light">Tillbaka till Kundlistan</Button>
-            </Link>
+                </Link>
             </div>
-            
             <CustomerForm customerId={params.id} />
-        </div>
-        
-        <AppFooter />
+            </div>
+            <AppFooter />
         </div>
     );
-}
+};
+
+export default EditCustomerPage;
