@@ -28,7 +28,9 @@ export default function ShopPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="md:col-span-1">
+            <Suspense fallback={<div className="text-center py-4">Laddar kategorier...</div>}>
                 <CategoryFilter />
+            </Suspense>
             </div>
             
             <div className="md:col-span-3">
