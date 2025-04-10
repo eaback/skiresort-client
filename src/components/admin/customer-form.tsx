@@ -39,8 +39,8 @@ export default function CustomerForm({ customerId }: { customerId?: string }) {
         
         const data = await response.json();
         
-        
-        const { password, ...customerData } = data;
+        const customerData = { ...data };
+        delete customerData.password; 
         setFormData(customerData);
         
         } catch (err) {

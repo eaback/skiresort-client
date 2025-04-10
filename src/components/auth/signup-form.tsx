@@ -76,7 +76,8 @@ export default function SignupForm() {
         return
       }
 
-      const { confirmPassword, ...customerData } = formData
+      const customerData = { ...formData } as Partial<FormData>
+      delete customerData.confirmPassword
 
       console.log("Submitting customer data:", {
         ...customerData,
