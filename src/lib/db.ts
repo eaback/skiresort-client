@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise"
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 
 interface InsertResult {
     insertId: number
