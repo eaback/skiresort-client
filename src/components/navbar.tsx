@@ -30,7 +30,7 @@ export default function NavbarComponent() {
         { name: "Hem", href: "/" },
         { name: "Om Oss", href: "/om-oss" },
         { name: "Aktiviteter", href: "/aktiviteter" },
-        { name: "Tjänster", href: "/tjanster" },
+        { name: "Tjänster", href: "/services" },
         { name: "Butik", href: "/butik" },
     ]
 
