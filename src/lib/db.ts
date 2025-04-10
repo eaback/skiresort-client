@@ -26,7 +26,7 @@ export async function getConnection() {
         database: process.env.DB_NAME,
         ssl: {
             rejectUnauthorized: true,
-            ca: fs.readFileSync(path.join(process.cwd(), 'certs', 'ca.pem'), 'utf8'),
+            ca: process.env.CA_CERT
         },
         waitForConnections: true,
         connectionLimit: 10,
