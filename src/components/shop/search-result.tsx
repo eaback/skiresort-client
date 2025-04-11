@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Card, CardBody, CardFooter } from "@heroui/react"
 import type { Product } from "@/lib/db-types"
@@ -50,7 +49,7 @@ export default function SearchResults({ query }: { query: string }) {
     if (results.length === 0) {
         return (
         <div className="text-center py-12">
-            <p className="text-lg mb-4">Inga produkter hittades för "{query}"</p>
+            <p className="text-lg mb-4">Inga produkter hittades för {query}</p>
             <Link href="/butik">
             <button className="text-teal-600 hover:text-teal-800 font-medium">Gå tillbaka till butiken</button>
             </Link>

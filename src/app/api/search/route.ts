@@ -2,6 +2,12 @@ import { NextResponse } from "next/server"
 import { executeQuery } from "@/lib/db"
 import type { Product } from "@/lib/db-types"
 
+
+interface GoogleSearchItem {
+  link: string
+}
+
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -23,7 +29,7 @@ export async function GET(request: Request) {
       const data = await response.json()
 
       if (response.ok && data.items) {
-        const productIds = data.items.map((item: any) => {
+        const productIds = (data.items as GoogleSearchItem[]).map((item) => {
           try {
             const urlParts = new URL(item.link).pathname.split('/')
             const lastSegment = urlParts[urlParts.length - 1]
