@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise"
-// import fs from 'fs';
-// import path from 'path';
+import fs from 'fs';
+import path from 'path';
 
 interface InsertResult {
     insertId: number
@@ -26,7 +26,8 @@ export async function getConnection() {
         database: process.env.DB_NAME,
         ssl: {
             rejectUnauthorized: true,
-            ca: process.env.CA_CERT
+            ca: process.env.CA_CERT //use this for production
+            // ca: fs.readFileSync(path.join(process.cwd(), 'certs', 'ca.pem'), 'utf8'),//use this for local development
         },
         waitForConnections: true,
         connectionLimit: 10,
